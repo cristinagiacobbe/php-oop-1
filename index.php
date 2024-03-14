@@ -19,12 +19,14 @@ Possiamo ad esempio organizzare il codice
 
 class Movie
 {
-    public $name;
-    public $email;
+
+    public function __construct(public string $title, public int $year, public string $nationality, public string $genre)
+    {
+        $this->title = $title;
+        $this->year = $year;
+        $this->$nationality;
+        $this->genre = $genre;
+    }
 }
-
-$cristina = new Movie();
-$cristina->name = 'Cristina';
-$cristina->email = 'scrich2013@gmail.com';
-
-var_dump($this);
+$pippo = new Movie('Inside out', 2020, 'USA', 'cartoon');
+var_dump($pippo);
