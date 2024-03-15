@@ -20,13 +20,41 @@ Possiamo ad esempio organizzare il codice
 class Movie
 {
 
-    public function __construct(public string $title, public int $year, public string $nationality, public string $genre)
+    public function __construct(public string $title, public int $year, public string $nationality, public string $genre, public $age)
     {
         $this->title = $title;
         $this->year = $year;
-        $this->$nationality;
+        $this->nationality = $nationality;
         $this->genre = $genre;
+        $this->age = $age = "";
+    }
+    public function IsModern($year)
+    {
+        if ($this->year > 1982) {
+            return "Modern";
+        } else {
+            return "Classic";
+        };
     }
 }
-$pippo = new Movie('Inside out', 2020, 'USA', 'cartoon');
-var_dump($pippo);
+
+
+$MovieA = new Movie('Inside out', 2020, 'USA', 'cartoon', '');
+$MovieB = new Movie('La vita à bella', 2000, 'Italy', 'comedy', '');
+$MovieC = new Movie("C'è ancora domani", 2023, 'Italy', 'comedy', '');
+$MovieD = new Movie('Via col vento', 1970, 'USA', 'drama', '');
+
+$ageMovieA = $MovieA->IsModern($MovieA->year);
+$ageMovieB = $MovieB->IsModern($MovieB->year);
+$ageMovieC = $MovieC->IsModern($MovieC->year);
+$ageMovieD = $MovieD->IsModern($MovieD->year);
+
+
+var_dump($MovieA);
+var_dump($ageMovieA);
+var_dump($MovieB);
+var_dump($ageMovieB);
+var_dump($MovieC);
+var_dump($ageMovieC);
+var_dump($MovieD);
+var_dump($ageMovieD);
