@@ -22,8 +22,10 @@ Aggiungiamo nella classe Movie:
 - un metodo 'normale' nel quale usiamo la proprietá statica
 - un metodo statico che chiamiamo staticamente
 */
-require __DIR__ . '/Models/Movie.php';
-require __DIR__ . '/Models/db.php';
+require_once __DIR__ . '/Models/Movie.php';
+require_once __DIR__ . '/Models/db.php';
+
+
 
 /* $MovieA->age = $MovieA->IsModern($MovieA->year);
 $MovieB->age = $MovieB->IsModern($MovieB->year);
@@ -49,17 +51,23 @@ var_dump(Movie::$nationality) */
 
 <body>
     <div class="container">
-        <h1 class="text-primary">Four film made in <?php echo $MovieA->Nationality() ?></h1>
-        <h6 class="text-success">A short list of movies made in <?php echo Movie::StaticNationality()   ?></h6>
-        <div class="row row-cols-3 g-3">
+        <h1 class="text-primary">A short list of movies made in <?php echo Movie::StaticNationality()   ?></h1>
+        <div class="row row-cols-1 g-3">
             <div class="col">
                 <?php foreach ($movies as $movie) : ?>
                     <div class="card">
                         <div class="card-body">
                             <h3><?php echo $movie->title ?></h3>
                             <p><?php echo $movie->year ?></p>
-                            <p><?php echo $movie->genre ?></p>
                             <p class="text-danger"><?php echo $movie->IsModern($year) ?></p>
+
+
+                            <?php foreach ($movie->genres as $genre) : ?>
+                                <p><?php echo $genre->name ?></p>
+                                <p><?php echo $genre->slug ?></p>
+                            <?php endforeach; ?>
+
+
                         </div>
                     </div>
                 <?php endforeach; ?>

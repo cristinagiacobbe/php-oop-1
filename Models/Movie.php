@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Class Movie
  */
@@ -17,12 +18,12 @@ class Movie
         return "USA";
     }
 
-    public function __construct(public string $title, public int $year, public string $genre, public $age)
+    public function __construct(public string $title, public int $year, public string $age, public array $genres)
     {
         $this->title = $title;
         $this->year = $year;
-        $this->genre = $genre;
         $this->age = $age;
+        $this->genres = $genres;
     }
     public function IsModern($year)
     {
