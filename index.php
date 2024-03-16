@@ -21,62 +21,20 @@ Aggiungiamo nella classe Movie:
 - una proprietá statica che richiamiamo staticamente
 - un metodo 'normale' nel quale usiamo la proprietá statica
 - un metodo statico che chiamiamo staticamente
-
-
 */
+require __DIR__ . '/Models/Movie.php';
+require __DIR__ . '/Models/db.php';
 
-class Movie
-{
-    public static string $nationality = "USA";
+/* $MovieA->age = $MovieA->IsModern($MovieA->year);
+$MovieB->age = $MovieB->IsModern($MovieB->year);
+$MovieC->age = $MovieC->IsModern($MovieC->year);
+$MovieD->age = $MovieD->IsModern($MovieD->year); */
 
-    public function Nationality()
-    {
-        return self::$nationality;
-    }
-
-    public static function StaticNationality()
-    {
-        return "USA";
-    }
-
-    public function __construct(public string $title, public int $year, public string $genre, public $age)
-    {
-        $this->title = $title;
-        $this->year = $year;
-        $this->genre = $genre;
-        $this->age = $age = "";
-    }
-    public function IsModern($year)
-    {
-        if ($this->year > 1982) {
-            return "Modern";
-        } else {
-            return "Classic";
-        };
-    }
-}
-
-
-$MovieA = new Movie('Inside out', 2015, 'cartoon', '');
-$MovieB = new Movie('Mary Poppins', 1964,  'comedy', '');
-$MovieC = new Movie("Oppenheimer", 2023, 'comedy', '');
-$MovieD = new Movie('Via col vento', 1939, 'drama', '');
-
-$ageMovieA = $MovieA->IsModern($MovieA->year);
-$ageMovieB = $MovieB->IsModern($MovieB->year);
-$ageMovieC = $MovieC->IsModern($MovieC->year);
-$ageMovieD = $MovieD->IsModern($MovieD->year);
-
-
-var_dump($MovieA);
-var_dump($ageMovieA);
+/* var_dump($MovieA);
 var_dump($MovieB);
-var_dump($ageMovieB);
 var_dump($MovieC);
-var_dump($ageMovieC);
 var_dump($MovieD);
-var_dump($ageMovieD);
-var_dump(Movie::$nationality)
+var_dump(Movie::$nationality) */
 ?>
 
 <!DOCTYPE html>
@@ -85,20 +43,24 @@ var_dump(Movie::$nationality)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Oop Movies</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>Four film made in <?php echo $MovieA->Nationality() ?></h1>
-        <h1>Four film made in <?php echo Movie::StaticNationality()   ?></h1>
-        <div class="row">
+        <h1 class="text-primary">Four film made in <?php echo $MovieA->Nationality() ?></h1>
+        <h6 class="text-success">A short list of movies made in <?php echo Movie::StaticNationality()   ?></h6>
+        <div class="row row-cols-3 g-3">
             <div class="col">
-                <?php foreach ($Movie as $EachMovie) : ?>
+                <?php foreach ($movies as $movie) : ?>
                     <div class="card">
-                        <?php echo $EachMovie->title ?>
-                        <?php echo $EachMovie->year ?>
-                        <?php echo $EachMovie->genre ?>
+                        <div class="card-body">
+                            <h3><?php echo $movie->title ?></h3>
+                            <p><?php echo $movie->year ?></p>
+                            <p><?php echo $movie->genre ?></p>
+                            <p class="text-danger"><?php echo $movie->IsModern($year) ?></p>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
